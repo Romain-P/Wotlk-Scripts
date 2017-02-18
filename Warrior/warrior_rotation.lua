@@ -259,13 +259,15 @@ if not cache then cache = true
 			end
 			return
 		elseif (id == Spells.BASH or id == Spells.PUMMEL) then
-			local cast, _, _, _, _, _, _, _, notProtected = UnitCastingInfo("unit")
-			if cast ~= nil and not notProtected then
+			local cast, _, _, _, _, _, _, _, notProtected = UnitCastingInfo(unit)
+			local chan, _, _, _, _, _, _, _, cnotProtected = UnitCastingInfo(unit)
+			if (cast ~= nil and not notProtected)
+			or (chan ~= nil and not cnotProtected) then
 				if show_errors then
 					print("BLOCKED: can't interrupt protected '"..unit.."'")
 				end
 				return
-			elseif cast == nil and protected_interrupt then
+			elseif cast == nil and chan == nil and protected_interrupt then
 				if show_errors then
 					print("BLOCKED: nothing to interrupt")
 				end
@@ -495,10 +497,7 @@ if not cache then cache = true
 	end
 	
 	print("[WarrScripts] Created by Romain. /reload to disable the frame.")
-	print("Create macros with /script CustomCast(\"spell\", \"unit\") to cast manually a spell.")
-	print("Do not specify any unit if you cast a spell on yourself.")
-	print("Examples: /script CustomCast(\"Bladestorm\") or /script CustomCast(\"Charge\", \"target\")")
-	print("Available units: target, focus, mouseover, party1 etc..")
+	print("See updates on https://github.com/romain-p/wotlk-scripts")
 end
 
 -- Script
