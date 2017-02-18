@@ -259,10 +259,10 @@ if not cache then cache = true
 			end
 			return
 		elseif (id == Spells.BASH or id == Spells.PUMMEL) then
-			local cast, _, _, _, _, _, _, _, notProtected = UnitCastingInfo(unit)
-			local chan, _, _, _, _, _, _, _, cnotProtected = UnitCastingInfo(unit)
-			if (cast ~= nil and not notProtected)
-			or (chan ~= nil and not cnotProtected) then
+			local cast, _, _, _, _, _, _, _, _ = UnitCastingInfo(unit)
+			local chan, _, _, _, _, _, _, _, _ = UnitChannelInfo(unit)
+			if (cast ~= nil and IsProtectedUnit(unit))
+			or (chan ~= nil and IsProtectedUnit(unit)) then
 				if show_errors then
 					print("BLOCKED: can't interrupt protected '"..unit.."'")
 				end
@@ -379,7 +379,7 @@ if not cache then cache = true
 		and not HasAura(Auras.ENRAGE)) or GetRage() < 15) then
 			Cast(Spells.RAGE)
 		
-		elseif id == Spells.BERSERKER_RAGE and HasAura(Spell.ENRAGED_REGENERATION) then
+		elseif id == Spells.BERSERKER_RAGE and HasAura(Spells.ENRAGED_REGENERATION) then
 			RunMacroText("/cancelaura "..SpellNames[Spells.ENRAGED_REGENERATION])
 		
 		elseif id == Spells.CHARGE and GetStance() ~= Stances.BATTLE then
