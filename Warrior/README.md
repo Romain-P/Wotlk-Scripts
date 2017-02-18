@@ -2,7 +2,7 @@ Warrior Scripts!
 ===================
 
 
-Enable this script one time and an auto-rotation gonna attack itself your target.
+Enable this script one time and an auto-rotation gonna attack itself your target.  
 If you wanna cast manually a spel, simply create a macro with the following content: 
 
     #showtooltip Spell Name
@@ -15,7 +15,7 @@ If you wanna cast manually a spel, simply create a macro with the following cont
 > - Don't put any unit if you wanna cast a spell on yourself.
 > - You can add everything you want before the script *(e.g /cancelaura Bladestorm)*
 
-Some spells are listened by this function. That is to say it gonna do required actions to cast some spells.
+Some spells are listened by this function. That is to say it gonna do required actions to cast some spells.  
 For example, if you use **CustomCast("Shield Bash", "target")**, it gonna check for rage if you don't have anough rage, and change your weapon to one hand and a shield, then it gonna cast Shield Bash in the next GCD.
 
 ----------
@@ -24,12 +24,12 @@ Configuration
 
 You can configurate a few this script by modifying the following lines in the script
 
-    rage_for_heroic = 75  -- Min rage for cast heroic strike
-    rage_for_execute = 30 -- Min rage for cast execute
-    ahk_rate = 0.01       -- AutoHotKeys delay, between each 'tried-cast'
-    show_frame = true     -- Show or not the green/red square
-    show_errors = true    -- Show errors in chat (related to your custom casts)
-    protected_interrupt = true -- Interrupts can't be fake if set on true
+    rage_for_heroic = 75                     -- Min rage for cast heroic strike
+    rage_for_execute = 30                    -- Min rage for cast execute
+    ahk_rate = 0.01                          -- AutoHotKeys delay, between each 'tried-cast'
+    show_frame = true                        -- Show or not the green/red square
+    show_errors = true                       -- Show errors in chat (related to your custom casts)
+    protected_interrupt = true               -- Interrupts can't be fake if set on true
    
     -- Just replace values between "" by your weapons
     Weapons = {
