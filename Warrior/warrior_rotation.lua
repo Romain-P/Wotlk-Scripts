@@ -1,9 +1,9 @@
 -- Hold
 if not cache then cache = true
-    -- Configuration [srt]
+	-- Configuration [srt]
     rage_for_heroic = 75
 	rage_for_execute = 30
-    ahk_rate = 0.01
+	ahk_rate = 0.01
 	show_frame = true
 	show_errors = true
 	protected_interrupt = true
