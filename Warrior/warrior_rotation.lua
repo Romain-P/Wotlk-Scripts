@@ -294,7 +294,7 @@ if not cache then cache = true
 				end
 				return
 			end
-		elseif IsProtectedUnit(unit) and id ~= Spells.SHATTERING_THROW then
+		elseif IsDamageProtected(unit) and id ~= Spells.SHATTERING_THROW then
 			if show_errors then
 				print("BLOCKED: can't '"..name.."' protected '"..unit.."'")
 			end
@@ -399,6 +399,34 @@ if not cache then cache = true
     function Rotation()
 		if Customcast.ID ~= 0 then
 			if GetTime() - Customcast.DELAY <= gdc_value then
+                if (Customcast.ID == Spells.BASH 
+                or Customcast.ID == Spells.PUMMEL) then
+                    local cast, _, _, _, _, _, _, _, _ = UnitCastingInfo(unit)
+                    local chan, _, _, _, _, _, _, _, _ = UnitChannelInfo(unit)
+                    if (cast ~= nil and IsProtectedUnit(unit))
+                    or (chan ~= nil and IsProtectedUnit(unit)) then
+                        if show_errors then
+                            print("BLOCKED: can't interrupt protected '"..unit.."'")
+                        end
+                        Customcast.ID = 0
+                        return
+                    elseif cast == nil and chan == nil and protected_interrupt then
+                        if show_errors then
+                            print("BLOCKED: nothing to interrupt")
+                        end
+                        Customcast.ID = 0
+                        return
+                    end
+                    
+                    SpellStopCasting()
+                    if GetRage() < 10 and not CdRemains(Spells.RAGE) then
+                        if show_errors then
+                            print("ERROR: not enough rage for interrupt '"..unit.."'")
+                        end
+                        Customcast.ID = 0
+                        return
+                    end
+                end
 				if Cast(Customcast.ID, Customcast.UNIT) then
 					OnSpecialCases(Customcast.ID)
 				end
