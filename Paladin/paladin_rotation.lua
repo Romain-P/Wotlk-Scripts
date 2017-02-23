@@ -228,7 +228,7 @@ if not cache then cache = true
     
     -- Cast healing spells on a given unit
     function Heal(unit)
-        if not Cast(Spells.HOLY_SHOCK) then
+        if not Cast(Spells.HOLY_SHOCK, unit) then
             Cast(Spells.FLASH_HEAL, unit)
         end
     end
