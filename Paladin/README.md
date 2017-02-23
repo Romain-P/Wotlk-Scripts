@@ -11,8 +11,14 @@ before casting.
     #showtooltip Spell Name
     /script SafeCast("Spell Name", "Unit")
     
-You also have 2 other functions for sacrifice, and healing a given unit. See @macro-list
+> **Note:**
 
+> - Showtooltip is gonna put the spell icon with its gcd on your macro
+> - Units can be enemy units such as **target, focus, arena1 etc..**
+> - This function is not recommanded to use for self casts
+> - You can add everything you want before the script *(e.g /stopcasting)*
+    
+You also have 2 other functions for sacrifice, and healing a given unit. See @macro-list
 ----------
 Configuration
 -------------
@@ -31,7 +37,6 @@ You can configurate a few this script by modifying the following lines in the sc
         EARTHBIND = "Earthbind Totem",
         MANA = "Mana Tide Totem"
     }
-
 ----------
 Macros list
 -------------
