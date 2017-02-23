@@ -20,6 +20,7 @@ if not cache then cache = true
 	enemy = "enemy"
 	ally = "ally"
     gcd_value = 1.5
+    enabled = false
     
     SpellNames = {}
 	SpellIds = {}
@@ -98,7 +99,8 @@ if not cache then cache = true
 		ENRAGE = 57522,
         GROUNDING_TOTEM = 8178,
         BEAST = 34471,
-        LICHBORN = 49039
+        LICHBORN = 49039,
+        MAGIC_SHIELD = 48707
 	}
     
     ArenaEnemies = {
@@ -219,6 +221,7 @@ if not cache then cache = true
             or HasAura(Auras.DETERRENCE, unit)
             or HasAura(Auras.GROUNDING_TOTEM, unit)
             or HasAura(Auras.BEAST, unit)
+            or HasAura(Auras.MAGIC_SHIELD, unit)
 	end
     
     -- Return true if a given unit is under 10 yards range
