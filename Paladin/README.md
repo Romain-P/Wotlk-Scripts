@@ -1,4 +1,4 @@
-Warrior Scripts!
+Paladin Scripts!
 ===================
 
 
