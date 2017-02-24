@@ -111,7 +111,7 @@ if not cache then cache = true
 		"arena1pet",
 		"arena2pet",
         "target",
-        "mouseover"
+        "mouseover",
         "focus",
 	}
 
@@ -248,6 +248,9 @@ if not cache then cache = true
     
     -- Safe cast
     function SafeCast(spell, unit)
+        if not UnitExists(unit) then
+            unit = player
+        end
         if not IsDamageProtected(unit) then
             CastSpellByName(spell, unit)
         elseif show_errors then
@@ -316,8 +319,7 @@ if not cache then cache = true
                 
                 if not AnalizeTotem(unit_name, unit) 
                 and not AnalizeAuras(unit) then
-                    local cast, _, _, _, _, _, _, _, _ = UnitCastingInfo(unit)
-                    local chan, _, _, _, _, _, _, _, _ = UnitChannelInfo(unit)
+                    local cast, _, _, _, _, _, _, _, _ = UnitCastingInfo(unit) or UnitChannelInfo(unit)
                     
                     if cast == SpellNames[Spells.SEDUCTION]
                     or chan == SpellNames[Spells.SEDUCTION] then
