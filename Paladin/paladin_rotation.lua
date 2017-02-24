@@ -321,8 +321,7 @@ if not cache then cache = true
                 and not AnalizeAuras(unit) then
                     local cast, _, _, _, _, _, _, _, _ = UnitCastingInfo(unit) or UnitChannelInfo(unit)
                     
-                    if cast == SpellNames[Spells.SEDUCTION]
-                    or chan == SpellNames[Spells.SEDUCTION] then
+                    if cast == SpellNames[Spells.SEDUCTION] then
                         if not IsDamageProtected(unit)
                         and ((In10yards(unit) and not Cast(Spells.HOLY_WRATH))
                         or Cast(Spells.FEAR, unit)) then
