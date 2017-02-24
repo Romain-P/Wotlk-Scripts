@@ -229,6 +229,11 @@ if not cache then cache = true
         return IsSpellInRange(SpellNames[Spells.JUDGEMENT_OF_JUSTICE], unit) == 1
     end
     
+     -- Return true if a given unit is under melee range
+    function InMeeleRange(unit)
+        return IsSpellInRange("", unit) == 1
+    end
+    
     -- Cast healing spells on a given unit
     function Heal(unit)
         if not Cast(Spells.HOLY_SHOCK, unit) then
@@ -323,7 +328,7 @@ if not cache then cache = true
                     
                     if cast == SpellNames[Spells.SEDUCTION] then
                         if not IsDamageProtected(unit)
-                        and ((In10yards(unit) and not Cast(Spells.HOLY_WRATH))
+                        and ((In10yards(unit) and Cast(Spells.HOLY_WRATH))
                         or Cast(Spells.FEAR, unit)) then
                             SpellStopCasting()
                         end
