@@ -323,10 +323,9 @@ if not cache then cache = true
                     
                     if cast == SpellNames[Spells.SEDUCTION]
                     or chan == SpellNames[Spells.SEDUCTION] then
-                        if In10yards(unit)
-                        and not IsDamageProtected(unit)
-                        and not Cast(Spells.HOLY_WRATH)
-                        and Cast(Spells.FEAR, unit) then
+                        if not IsDamageProtected(unit)
+                        and ((In10yards(unit) and not Cast(Spells.HOLY_WRATH))
+                        or Cast(Spells.FEAR, unit)) then
                             SpellStopCasting()
                         end
                     end
