@@ -401,12 +401,12 @@ if not cache then cache = true
             if GetTime() - Customcast.DELAY <= gdc_value then
                 if Customcast.ID == Spells.BASH
                         or Customcast.ID == Spells.PUMMEL then
-                    local cast, _, _, _, _, _, _, _, _ = UnitCastingInfo(target)
-                    local chan, _, _, _, _, _, _, _, _ = UnitChannelInfo(target)
-                    if (cast ~= nil and IsProtectedUnit(target))
-                            or (chan ~= nil and IsProtectedUnit(target)) then
+                    local cast, _, _, _, _, _, _, _, _ = UnitCastingInfo(Customcast.UNIT)
+                    local chan, _, _, _, _, _, _, _, _ = UnitChannelInfo(Customcast.UNIT)
+                    if (cast ~= nil and IsProtectedUnit(Customcast.UNIT))
+                            or (chan ~= nil and IsProtectedUnit(Customcast.UNIT)) then
                         if show_errors then
-                            print("BLOCKED: can't interrupt protected '" .. target .. "'")
+                            print("BLOCKED: can't interrupt protected '" .. Customcast.UNIT .. "'")
                         end
                         Customcast.ID = 0
                         return
@@ -421,7 +421,7 @@ if not cache then cache = true
                     SpellStopCasting()
                     if GetRage() < 10 and not CdRemains(Spells.RAGE) then
                         if show_errors then
-                            print("ERROR: not enough rage for interrupt '" .. target .. "'")
+                            print("ERROR: not enough rage for interrupt '" .. Customcast.UNIT .. "'")
                         end
                         Customcast.ID = 0
                         return
